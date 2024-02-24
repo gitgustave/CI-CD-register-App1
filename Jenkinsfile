@@ -1,14 +1,14 @@
 pipeline {
     agent any
     tools {
-        maven 'maven'
+        maven 'maven_home'
     }
     environment {
         SCANNER_HOME = tool 'sonar-scanner'
         APP_NAME = "java-registration-app"
         RELEASE = "1.0.0"
-        DOCKER_USER = "ashfaque9x"
-        DOCKER_PASS = 'dockerhub'
+        DOCKER_USER = "gustavepablo4"
+        DOCKER_PASS = 'Docker-cred'
         IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
         IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
 	
@@ -21,7 +21,7 @@ pipeline {
          }
          stage('Checkout from Git') {
             steps {
-                git branch: 'main', url: 'https://ashfaque-9x@bitbucket.org/vtechbox/registration-app.git'
+                git branch: 'main', url: 'https://github.com/gitgustave/CI-CD-register-App1.git'
             }
          }
          stage ('Build Package')  {
@@ -51,7 +51,7 @@ pipeline {
             steps {
                 rtServer (
                     id: "jfrog-server",
-                    url: "http://13.201.137.77:8082/artifactory",
+                    url: "http://192.168.1.35:8082/artifactory",
                     credentialsId: "jfrog"
                 )
 
@@ -143,7 +143,7 @@ pipeline {
             body: "Project: ${env.JOB_NAME}<br/>" +
                 "Build Number: ${env.BUILD_NUMBER}<br/>" +
                 "URL: ${env.BUILD_URL}<br/>",
-            to: 'ashfaque.s510@gmail.com',                              
+            to: 'gitgustave@gmail.com',                              
             attachmentsPattern: 'trivyfs.txt,trivyimage.txt'
       }
     }
