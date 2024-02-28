@@ -21,7 +21,7 @@ pipeline {
          }
          stage('Checkout from Git') {
             steps {
-                git branch: 'main', url: 'https://github.com/gitgustave/CI-CD-register-App1.git'
+                git branch: 'main', url: 'https://github.com/gitgustave/CI-CD-register-App1'
             }
          }
          stage ('Build Package')  {
